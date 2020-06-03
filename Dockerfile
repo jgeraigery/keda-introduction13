@@ -1,4 +1,3 @@
-## Create Image
 FROM maven:3.6.3-jdk-11-openj9
 
 WORKDIR /project

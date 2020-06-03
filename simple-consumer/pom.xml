@@ -18,7 +18,7 @@
     <maven.compiler.target>1.7</maven.compiler.target>
   </properties>
 
-  <dependencies> <!-- java -jar target/simple-consumer-1.0.0.jar localhost:32100 testSample messages Bob true -->
+  <dependencies>
     <!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
     <dependency>
         <groupId>org.apache.kafka</groupId>

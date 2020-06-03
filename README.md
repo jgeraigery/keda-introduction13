@@ -49,7 +49,7 @@ This repository contains a basic example of deploying KEDA to a local kubernetes
     ```sh
     kubectl apply -f deploy/consumer-scaler.yml
     ```
-1. Send messages to the consumer. The following will create a pod for the kafka produce in the kafka namespace which will delete itself after you are done with it.
+1. Send messages to the consumer. The following will create a pod for the kafka producer in the kafka namespace which will delete itself after you are done with it.
     ```sh
     kubectl -n kafka run kafka-producer -ti --image=strimzi/kafka:0.18.0-kafka-2.5.0 --rm=true --restart=Never -- bin/kafka-console-producer.sh --broker-list my-cluster-kafka-bootstrap:9092 --topic messages
     ```

@@ -15,13 +15,10 @@ import java.util.HashMap;
 
 public class Consumer extends Thread
 {
-    private String consumerName;
     private KafkaConsumer<String, String> consumer;
 
-    public Consumer(String bootstrapServer, String consumerGroupId, String topic, String consumerName)
+    public Consumer(String bootstrapServer, String consumerGroupId, String topic)
     {
-        this.consumerName = consumerName;
-
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
         props.put(ConsumerConfig.GROUP_ID_CONFIG, consumerGroupId);        
@@ -30,6 +27,7 @@ public class Consumer extends Thread
         props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, false);
         props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "30000");
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 10);
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
         this.consumer = new KafkaConsumer<>(props);
         this.consumer.subscribe(Arrays.asList(topic));
@@ -54,7 +52,7 @@ public class Consumer extends Thread
                     } catch (InterruptedException e){
                         e.printStackTrace();
                     }
-                    System.out.printf("%s received: %s%n", this.consumerName, record.value());
+                    System.out.printf("Received: %s%n", record.value());
 
                     // Commit offset as soon as it is consumed.
                     consumer.commitSync(offsetmap);

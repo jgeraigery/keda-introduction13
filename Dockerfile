@@ -1,4 +1,4 @@
-FROM maven:3.6.3-jdk-11-openj9
+FROM maven:3.8.3-jdk-11-openj9
 
 WORKDIR /project
 COPY simple-consumer/pom.xml /project/pom.xml
